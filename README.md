@@ -5,96 +5,120 @@
 Thanks to "QR_Code_to_Image", creating and managing QR codes becomes simple and efficient. Whether for professional or personal needs, this plugin offers a comprehensive solution for integrating QR code functionalities into your Flutter application
 
 ## Using
+<pre>
+    Open the project  /android/app/buil.gradle 
+
+    change this
+
+    android {
+        compileSdkVersion 34
+        
+    }
+
+    add this
+    
+    defaultConfig {
+        multiDexEnabled true
+    }
+</pre>
+
+
+## Using  You'll need url_launcher to open links
+![url_launcher](https://pub.dev/packages/url_launcher)
+
 
 To generate a qr code, convert to image and share
 
-import 'package:qr_code_to_image/qr_code_to_image.dart';
+<pre>
+    import 'package:qr_code_to_image/qr_code_to_image.dart';
 
-GestureDetector(
-    onTap: (){
-        QrCodeToImage.showQrCodeScreen(context, textQrCode: textQr.text.trim(),textButton: "Convert Qr code to image and share", colorWidgetTest: Colors.pink);
-    },
-    child: Container(
-        height: 50,
-        color: Colors.pink,
-        child: const Center(
-        child: Text("Generate Qr code",
-            style: TextStyle(
-                fontSize: 16,
-                color: Colors.white
+    GestureDetector(
+        onTap: (){
+            QrCodeToImage.showQrCodeScreen(context, textQrCode: textQr.text.trim(),textButton: "Convert Qr code to image and share", colorWidgetTest: Colors.pink);
+        },
+        child: Container(
+            height: 50,
+            color: Colors.pink,
+            child: const Center(
+            child: Text("Generate Qr code",
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white
+                    ),
                 ),
             ),
         ),
     ),
-),
+</pre>
+
+## Explanation:
+
+| Parameter         | Description                                |
+|-------------------|--------------------------------------------|
+| `textQrCode`      | Text to convert to qr code     |
+| `textButton`      | Share button text after converting to image     |
+| `colorWidgetTest` | This is the color of the share button after conversion to image, the color of the button border and the color of the button text. |
 
 
-Explanation: 
-
-textQrCode:  Text to convert to qr code
-
-textButton: Share button text after converting to image
-
-colorWidgetTest: This is the color of the share button after conversion to image, the color of the button border and the color of the button text.
-
-
-To scan a qr code:
-
-import 'package:qr_code_to_image/qr_code_to_image.dart';
-
-GestureDetector(
-    onTap: () {
-        QrCodeToImage.scanQrCode(lineColor: "#ff6666",cancelButtonText: "Anuler").then((value) {
-            if(value!.isNotEmpty){
-                setState(() {
-                qrCodeResult = value;
-                });
-            }
-        });
-    },
-    child: Container(
-        height: 50,
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.pink, width: 1)
-        ),
-    child: const Center(
-        child: Text("Scan and Share QR Code", 
-            style: TextStyle(
-                color: Colors.pink
-                )
-            )
-        ),
-    ),
-),
-
-
-
-To scan a BarCode:
-
-import 'package:qr_code_to_image/qr_code_to_image.dart';
-
-GestureDetector(
-    onTap: () {
-        QrCodeToImage.scanBarCode(lineColor: "#ff6666",cancelButtonText: "Anuler").then((value) {
-            if(value!.isNotEmpty){
-                setState(() {
+## To scan a qr code:
+<pre>
+    import 'package:qr_code_to_image/qr_code_to_image.dart';
+    
+    GestureDetector(
+        onTap: () {
+            QrCodeToImage.scanQrCode(lineColor: "#ff6666",cancelButtonText: "Anuler").then((value) {
+                if(value!.isNotEmpty){
+                    setState(() {
                     qrCodeResult = value;
-                });
-            }
-        });
-    },
-    child: Container(
-        height: 50,
-        color: Colors.pinkAccent,
+                    });
+                }
+            });
+        },
+        child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.pink, width: 1)
+            ),
         child: const Center(
-        child: Text("Scan BarCode",
-            style: TextStyle(
-                color: Colors.pink
-            )
-            )
+            child: Text("Scan and Share QR Code", 
+                style: TextStyle(
+                    color: Colors.pink
+                    )
+                )
+            ),
         ),
     ),
-),
+</pre>
+
+## To scan a BarCode:
+
+<pre>
+    import 'package:qr_code_to_image/qr_code_to_image.dart';
+    
+    GestureDetector(
+        onTap: () {
+            QrCodeToImage.scanBarCode(lineColor: "#ff6666",cancelButtonText: "Anuler").then((value) {
+                if(value!.isNotEmpty){
+                    setState(() {
+                        qrCodeResult = value;
+                    });
+                }
+            });
+        },
+        child: Container(
+            height: 50,
+            color: Colors.pinkAccent,
+            child: const Center(
+            child: Text("Scan BarCode",
+                style: TextStyle(
+                    color: Colors.pink
+                )
+                )
+            ),
+        ),
+    ),
+</pre>
+
 ![Capture d'écran de mon application](https://github.com/sylvaintaio/qr_code_to_image/blob/main/Screenshot_20240515-154039.jpg)
 ![Capture d'écran de mon application](https://github.com/sylvaintaio/qr_code_to_image/blob/main/Screenshot_20240515-154045.jpg)
 ![Capture d'écran de mon application](https://github.com/sylvaintaio/qr_code_to_image/blob/main/Screenshot_20240515-154104.jpg)
